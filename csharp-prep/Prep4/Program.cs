@@ -21,7 +21,7 @@ class Program
           int sum = 0;
           int listCount = listOfNumbers.Count - 1;
           int max = listOfNumbers.Max();
-          double average = 0.0;
+          double average = listOfNumbers.Average();
           for (int i = 0; i < listOfNumbers.Count; i++)
           {
             sum += listOfNumbers[i];
