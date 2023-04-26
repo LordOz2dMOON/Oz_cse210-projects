@@ -20,8 +20,8 @@ class Program
         {
           int sum = 0;
           int listCount = listOfNumbers.Count - 1;
+          double average = 0;
           int max = listOfNumbers.Max();
-          double average = listOfNumbers.Average();
           for (int i = 0; i < listOfNumbers.Count; i++)
           {
             sum += listOfNumbers[i];
