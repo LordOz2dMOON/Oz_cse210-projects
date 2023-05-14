@@ -1,15 +1,9 @@
 public class Entry
 {
-    public List<string> _entries = new List<string>();
     public string _prompt = "";
     public string _response = "";
     DateTime _currentDate = DateTime.Now;
-
-    public void AddEntry(string prompt, string response)
-    {
-        _entries.Add(prompt);
-        _entries.Add(response);
-    }
+    string _dateString = DateTime.Now.ToString("dd-MM-yyyy"); 
 
     public void DisplayEntry()
     {

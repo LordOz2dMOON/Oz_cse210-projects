@@ -4,21 +4,10 @@ class Program
 {
     static void Main(string[] args)
     {
-          Entry entry = new Entry();
+          
           Journal newJournal = new Journal();
-         
-         List<string> Prompts = new List<string>();
-        Prompts.Add("Did you workout today?");
-        Prompts.Add("Who was the most interesting person I interacted with today?");
-        Prompts.Add("What was the best part of my day?");
-        Prompts.Add("How did I see the hand of the Lord in my life today?");
-        Prompts.Add("What was the strongest emotion I felt today?");
-        Prompts.Add("If I had one thing I could do over today, what would it be?");
-
-        Random rnd = new Random();
-        int randIndex = rnd.Next(Prompts.Count);
-        string random = Prompts[randIndex];
-        
+          PromptsGenerator userPrompts = new PromptsGenerator();
+       
         while (true)
         {
             Console.WriteLine("Welcome to the journal");
@@ -28,35 +17,47 @@ class Program
             Console.WriteLine("3.Load");
             Console.WriteLine("4.Save");
             Console.WriteLine("5.Quit");
+            Console.WriteLine("6.Provide a directory to search");
             Console.Write("What would you like to do? ");
-        string answer = Console.ReadLine();
-        int number = int.Parse(answer);
+            string answer = Console.ReadLine();
+            int number = int.Parse(answer);
 
-        switch (number)
-        {
-
-            case 1:
-           
-            Console.WriteLine(random );
-            string response = Console.ReadLine();
-            entry._prompt = random;
-            entry._response = response;
-            entry.AddEntry(random, response);
-            break;
-            case 2:
-             foreach (string word in entry._entries)
+            switch (number)
             {
-                entry.DisplayEntry();
-            }
-            break;
-            
-       }
-       }
 
-
-
-        
-
-
+                case 1:
+                string prompt = userPrompts.GetPrompts();
+                Console.WriteLine(prompt);
+                string response = Console.ReadLine();
+                Entry entry = new Entry();
+                entry._prompt = prompt;
+                entry._response = response;
+                newJournal.AddEntry(entry);
+                break;
+                case 2:
+                newJournal.DisplayEntries();
+                break;
+                case 3:
+                 Console.WriteLine("What is the filename?");
+                 string fileName = Console.ReadLine();
+                 newJournal.LoadFromFile(fileName);
+                 break;
+                 case 4:
+                 Console.WriteLine("What is the filename?");
+                 string filename = Console.ReadLine();
+                 newJournal.SaveToFile(filename);
+                 break;
+                 case 5:
+                 Environment.Exit(0);
+                 break;
+                 case 6:
+                 Console.WriteLine("What is the directory?");
+                 string fileDirectory = Console.ReadLine();
+                 newJournal.SearchForFile(fileDirectory);
+                 Console.WriteLine(" ");
+                 break;
+           }
+        }
     }
+        
 }
