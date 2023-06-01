@@ -23,8 +23,8 @@ public class Reference
 
     public override string ToString()
     {
-        string startVerse = $"{_book} {_chapter}:{_startVerse}";
-        string endVerse = $"{_startVerse}-{_endVerse}";
+        string startVerse = $"{_book} {_chapter}:{_startVerse }";
+        string endVerse = $"{_startVerse }-{_endVerse }";
         if (_endVerse.Length == 0)
         {
             return startVerse;
