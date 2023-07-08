@@ -1,51 +1,51 @@
-using System.IO; 
 public class Goal
 {
-    protected string _description;
-    protected int _points;
-    protected string _name{get; set;}
-    protected List<Goal> _goals;
-    protected bool _isComplete;
-    protected int _score;
+    protected string name;
+    protected string description;
+    protected int points;
+    protected string goalType;
+    protected bool isComplete;
 
-    public Goal(string name, string description, int points)
+    public Goal(string name, string description, int points, string goalType)
     {
-        _name = name;
-        _description = description;
-        _points = points;
+        this.name = name;
+        this.description = description;
+        this.points = points;
+        this.goalType = goalType;
+        //this.isComplete = isComplete;
     }
 
-    public string ListGoal()
+    public Goal(string savedGoal)
     {
-        if(_isComplete == true)
+        //parse saved goal into the attributes
+        List<string> attributes = savedGoal.Split('|').ToList();
+        name = attributes[1];
+        description = attributes[2];
+        points = Convert.ToInt16(attributes[3]);
+    }
+    
+
+    public override string ToString()
+    {   
+        string result;
+        if (isComplete)
         {
-            return $"[x] {_name} ({_description})";
+            result = $"[x] {name} {description} {points}";
         }
         else
-            return $"[] {_name} ({_description})";
+        {
+            result = $"[ ] {name} {description} {points}";
+        }
+        return result;
     }
 
-    public void SaveToFile(string filename)
+    public virtual string RenderSavedGoal()
     {
-        //Console.Write("what is your filename?");
-        //string nameOfFile = Console.ReadLine();
-        using (StreamWriter outputFile = new StreamWriter(filename))
-{
-    // You can add text to the file with the WriteLine method
-    outputFile.WriteLine("This will be the first line in the file.");
-    
-    // You can use the $ and include variables just like with Console.WriteLine
-    string color = "Blue";
-    outputFile.WriteLine($"My favorite color is {color}");
-}
+        return $"{goalType}|{name}|{description}|{points}|{isComplete}";
     }
 
-    public void RecordEvent(int _points)
+    public virtual int RecordEvent()
     {
-        this._score += _points;
+        return points;
     }
-
-
-
-    
 }

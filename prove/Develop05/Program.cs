@@ -4,7 +4,13 @@ class Program
 {
     static void Main(string[] args)
     {
-        Goal newSimpleGoal = new Goal("Give a talk", "Give a talk at church", 50);
+        
+        int score = 0;
+        int answer = 0;
+        do {
+        Goal newSimpleGoal = new Goal("Give a talk", "Give a talk at church", 50, "simple");
+        Console.WriteLine($"You have {score} points");
+        List<Goal> goals = new List<Goal>();
         Console.WriteLine("Menu Options:");
         Console.WriteLine(" 1.create new goal");
         Console.WriteLine(" 2.List Goals");
@@ -14,7 +20,7 @@ class Program
         Console.WriteLine(" 6.Quit");
         Console.Write("Select a choice from the menu");
         string choice = Console.ReadLine();
-        int answer = int.Parse(choice);
+        answer = int.Parse(choice);
         if (answer == 1)
         {
             Console.WriteLine("1.Simple goal");
@@ -26,13 +32,24 @@ class Program
             if (secondAnswer == 1)
             {
                 Console.Write("What is the name of your goal?");
-                Console.ReadLine();
+                string name = Console.ReadLine();
                 Console.Write("Describe your goal briefly");
-                Console.ReadLine();
+                string description = Console.ReadLine();
                 Console.Write("How many points are associated with your goal?");
-                Console.ReadLine();
+                string points = Console.ReadLine();
+                int number = int.Parse(points);
+                SimpleGoal goal = new SimpleGoal(name, description, number, "simple");
+                goals.Add(goal);
+            }
+        }
+        else if (answer == 2)
+        {
+            foreach(Goal goal in goals)
+            {
+                Console.WriteLine(goal);
             }
         }
 
+     } while (answer != 6);
     }
 }
