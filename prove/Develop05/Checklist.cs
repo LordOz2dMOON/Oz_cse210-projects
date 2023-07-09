@@ -9,16 +9,16 @@ public class ChecklistGoal: Goal
         //need to get the number of times, bonus and completed count and save
         string[] attributes = savedGoal.Split('|');
         numoftimes = Convert.ToInt32(attributes[5]);
-        completedCount = Convert.ToInt32(attributes[6]);
-        bonus = Convert.ToInt32(attributes[7]);
+        bonus = Convert.ToInt32(attributes[6]);
+        completedCount = Convert.ToInt32(attributes[7]);
     }
 
-    public ChecklistGoal(string name, string description, int points, string goalType, int numoftimes, int bonus, int completedCount) 
-    : base(name, description, points, goalType)
+    public ChecklistGoal(string name, string description, int points, int numoftimes, int bonus) 
+    : base(name, description, points, "ChecklistGoal")
     {
         this.numoftimes = numoftimes;
         this.bonus = bonus;
-        this.completedCount = completedCount;
+        this.completedCount = 0;
     }
 
     public override int RecordEvent()
@@ -35,7 +35,7 @@ public class ChecklistGoal: Goal
 
     public override string RenderSavedGoal()
     {
-        return $"{goalType}|{name}|{description}|{points}|{isComplete}|{numoftimes}|{bonus}|{completedCount}";
+        return $"{base.RenderSavedGoal()}|{numoftimes}|{bonus}|{completedCount}";
     }
 
     public override string ToString()

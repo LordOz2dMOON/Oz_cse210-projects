@@ -1,6 +1,6 @@
 public class SimpleGoal: Goal
 {
-    public SimpleGoal(string name, string description, int points, string goalType) :base (name, description, points, goalType)
+    public SimpleGoal(string name, string description, int points) :base (name, description, points, "SimpleGoal")
     {}
 
     public override int RecordEvent()

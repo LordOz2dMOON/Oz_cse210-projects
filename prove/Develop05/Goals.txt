@@ -1,0 +1,3 @@
+SimpleGoal|give a talk|give a talk at church|50|False
+ChecklistGoal|go to the gym|go to the gym for a month|60|False|20|250|0
+NegativeGoal|Eat junk food|Eating unhealthy food|20|False
