@@ -47,6 +47,7 @@ class Program
 
                 using (StreamWriter outputFile = new StreamWriter(fileName))
                 {
+                    outputFile.WriteLine(score);
                     foreach (Goal goal in goals)
                     {
                         outputFile.WriteLine(goal.RenderSavedGoal());
@@ -59,6 +60,8 @@ class Program
                 string responseFilename = Console.ReadLine();
                 goals.Clear();
                 string[] lines = System.IO.File.ReadAllLines(responseFilename);
+                //score = Convert.ToInt16(lines[0]);
+
                 foreach (string line in lines)
                 {
                      List<string> attributes = line.Split('|').ToList();
